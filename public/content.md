@@ -3,7 +3,7 @@ name: 'Jasper'
 role: 'univ student'
 email: 'annpannnosirogoma@example.com'
 github: 'inferiorj'
-avatar: '/avatar.png'
+avatar: './avatar.png'
 ---
 
 ## About Me

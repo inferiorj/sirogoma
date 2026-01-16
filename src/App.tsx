@@ -7,9 +7,15 @@ const App = () => {
   const [data, setData] = useState<any>(null);
 
   useEffect(() => {
-    fetch('/content.md')
-      .then((res) => res.text())
-      .then((text) => setData(fm(text)));
+    const baseUrl = import.meta.env.BASE_URL;
+
+    fetch(`${baseUrl.replace(/\/$/, '')}/content.md`)
+      .then((res) => {
+        if (!res.ok) throw new Error(`Fetch error: ${res.status}`);
+        return res.text();
+      })
+      .then((text) => setData(fm(text)))
+      .catch((err) => console.error('Markdown fetch failed:', err));
   }, []);
 
   if (!data)
@@ -42,19 +48,16 @@ const App = () => {
                 href={`https://github.com/${attr.github}`}
                 label="GitHub"
               />
-              {attr.linkedin && (
-                <ContactLink
-                  href={`https://linkedin.com/in/${attr.linkedin}`}
-                  label="LinkedIn"
-                />
-              )}
             </nav>
           </div>
 
           {/* 自画像部分：Tailwind v4のユーティリティで装飾 */}
           <div className="flex-shrink-0">
             <img
-              src={attr.avatar}
+              src={`${import.meta.env.BASE_URL.replace(
+                /\/$/,
+                ''
+              )}${attr.avatar.replace(/^\./, '')}`}
               alt={attr.name}
               className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl object-cover shadow-2xl shadow-indigo-200 ring-4 ring-white transition-transform duration-500 hover:scale-105"
             />
