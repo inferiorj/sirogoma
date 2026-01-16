@@ -10,7 +10,11 @@ avatar: './avatar.png'
 
 **限界大学生**です。
 
-## hobbies
+## Profile
+
+**八木山動物公園付属高等学校 (東 工大付属高)**
+
+## Hobbies
 
 - **rhythm games**
   - Taiko Drum Master
